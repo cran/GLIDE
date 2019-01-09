@@ -67,9 +67,9 @@ q-value, genetic association with exposure, and variance of the estimated associ
 each SNP.
 }
 \references{
-J. Y. Dai, U. Peters, X. Wang, J. Kocarnik, J. et al. Diagnostics of pleiotropy in Mendelian
-randomization studies: Global and individual tests for direct effects. The American
-Journal of Human Genetics, 2017, submitted.
+J. Y. Dai, U. Peters, X. Wang, J. Kocarnik, J. et al. Diagnostics for Pleiotropy in 
+Mendelian Randomization Studies: Global and Individual Tests for Direct Effects, 
+The American Journal of Human Genetics 2018, 187(12):2672-2680.
 
 }
 \author{

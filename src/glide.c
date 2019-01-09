@@ -1,4 +1,4 @@
-//#define MATHLIB_STANDALONE 1
+
 # include <stdio.h>
 # include <stdlib.h>
 # include <R.h>
@@ -400,6 +400,7 @@ void compute_cormat(int *nsnp,
     }
     
     //printf("%s %d %s\n","Total", *nsnp, "iterations...");
+    //fflush(stdout);
     for (i=0;i<*nsnp-1;i++)
     //for (i=0;i<1;i++)
     {
@@ -440,6 +441,14 @@ void compute_cormat(int *nsnp,
                     count++;
                 }
             }
+            //if (i==0 && j==1)
+            //{
+            //   FILE *file;
+            //   file = fopen("debug.txt", "w");
+            //   print_vector_double(v_xmat1,*n_subject*n_cor,file);
+            //   fclose(file); 
+            //} 
+
             dqrinv(bread, n_cor*2, pow(10,-8), inv_bread); 
             multiplicationbyrow(v_xmat1,*n_subject,n_cor,v_y_yfit,score1);
 			multiplicationbyrow(v_xmat2,*n_subject,n_cor,v_y_yfit,score2);
@@ -476,6 +485,10 @@ void compute_cormat(int *nsnp,
     {
         v_cormat[i*(*nsnp)+i]=1;
     }
+     //FILE *file;
+     //file = fopen("debug.txt", "w");
+     //print_vector_double(v_cormat,4*n_cor*n_cor,file);
+     //fclose(file); 
 
     //file = fopen("debug.txt", "w");
     //print_vector_double(v_xmat_yfit_1_yfit,*n_subject*n_cor,file);
