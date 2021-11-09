@@ -67,9 +67,9 @@ q-value, genetic association with exposure, and variance of the estimated associ
 each SNP.
 }
 \references{
-J. Y. Dai, U. Peters, X. Wang, J. Kocarnik, J. et al. Diagnostics for Pleiotropy in 
-Mendelian Randomization Studies: Global and Individual Tests for Direct Effects, 
-The American Journal of Human Genetics 2018, 187(12):2672-2680.
+J. Y. Dai, U. Peters, X. Wang, J. Kocarnik, J. et al. Diagnostics of pleiotropy in Mendelian
+randomization studies: Global and individual tests for direct effects. Am J Epidemiol 
+187(12):2672-80, 2018.
 
 }
 \author{
@@ -90,16 +90,18 @@ formula=as.formula("outcome~age+sex+pc1+pc2+pc3")
 #We next define the columns in simdat that contain genotype data
 genotype_columns=which(grepl("^SNP",colnames(simdat)))
 
-\dontrun{
+\donttest{
 ##run glide
 out=glide(formula=formula,exposure_coeff=coeff,genotype_columns,data=simdat,np=100000,
 qcutoff=0.2,parallel=TRUE,corenumber=1,verbose=TRUE)
 
 ##use more cores
 out=glide(formula=formula,exposure_coeff=coeff,genotype_columns,data=simdat,np=100000,
-qcutoff=0.2,parallel=TRUE,corenumber=4,verbose=TRUE)
+qcutoff=0.2,parallel=TRUE,corenumber=2,verbose=TRUE)
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{Causal Inference, Mendelian Randomization, Pleiotropy}
+\keyword{Causal Inference}
+\keyword{Mendelian Randomization}
+\keyword{Pleiotropy}

@@ -11,7 +11,16 @@ library(GLIDE)
 ### code chunk number 2: data
 ###################################################
 data(simdata)
-ls()
+#The example dataset is a list composed of two dataframes. 
+#simat stores 20,000 observations of 81 variables, 
+#including outcome, 5 ajusting covariates, and 75 SNPs.  
+simdat=simdata$simdat
+dim(simdat)
+head(colnames(simdat),n=10)
+#coeff stores the 75 external regression cofficients.
+coeff=simdata$coeff
+head(coeff)
+
 
 
 ###################################################
@@ -30,13 +39,13 @@ formula
 ###################################################
 ### code chunk number 5: out
 ###################################################
-out=glide(formula=formula,exposure_coeff=coeff,genotype_columns,data=simdat,np=100000,
-qcutoff=0.2,parallel=TRUE,corenumber=4,verbose=TRUE)
+out=glide(formula=formula,exposure_coeff=coeff,genotype_columns,data=simdat,
+          np=100000,qcutoff=0.2,parallel=TRUE,corenumber=1,verbose=TRUE)
 head(out)
 
 
 ###################################################
-### code chunk number 6: GLIDE.Rnw:104-108
+### code chunk number 6: GLIDE.Rnw:120-124
 ###################################################
 cat('\\begin{figure}[h]\n')
 file = "./plot.png"

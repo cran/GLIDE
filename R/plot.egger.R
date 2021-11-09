@@ -1,9 +1,11 @@
-plot.egger <- function(x,qcutoff=0.2,xlab="Genetic association with the exposure",
+plot.egger <- function(x,exposure_coeff,qcutoff=0.2,xlab="Genetic association with the exposure",
                        ylab="Genetic association with the outcome",...)
 {
   x=as.data.frame(x)
   
   yy <- x$g_outcome
+  idx=match(rownames(x),rownames(exposure_coeff))
+  x$g_exposure=exposure_coeff[idx,1]
   xx <- cbind(1,x$g_exposure)
   ww <- diag(1/x$g_outcome_variance)
   bb <- solve(t(xx) %*% ww %*% xx) %*% t(xx) %*% ww %*% yy

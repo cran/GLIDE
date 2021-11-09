@@ -101,7 +101,7 @@ glide <- function(formula,exposure_coeff=NULL,genotype_columns=NULL,data,
                    yfit=as.double(yfit),
                    y=as.double(y),
                    xmat=as.double(xmat),
-                   data_genotype=as.double(data.matrix(data_genotype)),
+                   data_genotype=data.matrix(data_genotype),
                    cormat_col=as.double(cormat_col),
                    PACKAGE="GLIDE")
       result$cormat_col
@@ -127,7 +127,7 @@ glide <- function(formula,exposure_coeff=NULL,genotype_columns=NULL,data,
                  yfit=as.double(yfit),
                  y=as.double(y),
                  xmat=as.double(xmat),
-                 data_genotype=as.double(data.matrix(data_genotype)),
+                 data_genotype=data.matrix(data_genotype),
                  cormat=as.double(cormat),
                  PACKAGE="GLIDE"
     )

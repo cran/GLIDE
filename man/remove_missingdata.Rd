@@ -16,3 +16,6 @@ remove_missingdata(data)
 data is a dataframe.
 }
 }
+\value{
+row index of the input data which don't have missing values. 
+}

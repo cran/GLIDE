@@ -26,7 +26,7 @@ An integer vector, column indices of data in which genotype data are stored.
 A data frame composed of formula-related components and snp genotype columns.
 }
 }
-
+\value{No return value, would generate error messages if input data are not right.}
 \author{
 James Y. Dai and X. Wang
 }

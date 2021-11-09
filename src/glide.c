@@ -1,7 +1,9 @@
-
+//#define MATHLIB_STANDALONE 1
 # include <stdio.h>
 # include <stdlib.h>
 # include <R.h>
+# include <R_ext/Error.h>
+# include <R_ext/RS.h>
 # include <Rmath.h>
 # include <math.h>
 # include <string.h>
@@ -400,7 +402,6 @@ void compute_cormat(int *nsnp,
     }
     
     //printf("%s %d %s\n","Total", *nsnp, "iterations...");
-    //fflush(stdout);
     for (i=0;i<*nsnp-1;i++)
     //for (i=0;i<1;i++)
     {
@@ -441,14 +442,6 @@ void compute_cormat(int *nsnp,
                     count++;
                 }
             }
-            //if (i==0 && j==1)
-            //{
-            //   FILE *file;
-            //   file = fopen("debug.txt", "w");
-            //   print_vector_double(v_xmat1,*n_subject*n_cor,file);
-            //   fclose(file); 
-            //} 
-
             dqrinv(bread, n_cor*2, pow(10,-8), inv_bread); 
             multiplicationbyrow(v_xmat1,*n_subject,n_cor,v_y_yfit,score1);
 			multiplicationbyrow(v_xmat2,*n_subject,n_cor,v_y_yfit,score2);
@@ -485,10 +478,6 @@ void compute_cormat(int *nsnp,
     {
         v_cormat[i*(*nsnp)+i]=1;
     }
-     //FILE *file;
-     //file = fopen("debug.txt", "w");
-     //print_vector_double(v_cormat,4*n_cor*n_cor,file);
-     //fclose(file); 
 
     //file = fopen("debug.txt", "w");
     //print_vector_double(v_xmat_yfit_1_yfit,*n_subject*n_cor,file);
@@ -539,10 +528,10 @@ double **double_matrix(int nrow, int ncol){
     int i;
     double **m;
     m=(double **) Calloc(nrow, double *);
-    if (!m) errmsg("mem alloc failure 1 in double_matrix");
+    //if (!m) errmsg("mem alloc failure 1 in double_matrix");
     for (i=0;i<nrow;i++) {
         m[i]=(double *) Calloc(ncol,double);
-        if (!m[i]) errmsg("mem alloc failure 2 in double_matrix");
+        //if (!m[i]) errmsg("mem alloc failure 2 in double_matrix");
     }
     return m;
 }
@@ -551,7 +540,7 @@ double *double_vec(int n){
     
     double *v;
     v=(double *) Calloc(n, double);
-    if (!v) errmsg("mem alloc failure in double_vec");
+    //if (!v) errmsg("mem alloc failure in double_vec");
     return v;
 }
 
@@ -628,18 +617,18 @@ double *double_mat_to_vec(double **Ymat, int nrow, int ncol,char opt){
 int *int_vec(int n){
     int *v;
     v=(int *) Calloc(n, int);
-    if (!v) errmsg("mem alloc failure in int_vec");
+    //if (!v) errmsg("mem alloc failure in int_vec");
     return v;
 }
 
 
-static void errmsg(char *string){
+//static void errmsg(char *string){
     
     /* Function to emulate "stop" of S+ - see page 134, S Programing, by
      Venables and Ripley */
     
-    PROBLEM "%s", string RECOVER(NULL_ENTRY);
-}
+    //PROBLEM "%s", string RECOVER(NULL_ENTRY);
+//}
 
 
 void mydgemm (int M,int N,int K,double *A, double *B, double *C)

@@ -34,6 +34,20 @@
 %\bibliographystyle{plainnat}
 
 \begin{document}
+\SweaveOpts{concordance=TRUE}
+\SweaveOpts{concordance=TRUE}
+\SweaveOpts{concordance=TRUE}
+\SweaveOpts{concordance=TRUE}
+\SweaveOpts{concordance=TRUE}
+\SweaveOpts{concordance=TRUE}
+\SweaveOpts{concordance=TRUE}
+\SweaveOpts{concordance=TRUE}
+\SweaveOpts{concordance=TRUE}
+\SweaveOpts{concordance=TRUE}
+\SweaveOpts{concordance=TRUE}
+\SweaveOpts{concordance=TRUE}
+\SweaveOpts{concordance=TRUE}
+\SweaveOpts{concordance=TRUE}
 
 \title{The \Rpackage{GLIDE} package: Global and Individual Tests for Direct Effects in Mendelian randomization studies}
 \author{Xiaoyu Wang, James Y. Dai}
@@ -50,7 +64,7 @@ library(GLIDE)
 
 \section{Main functions}
 
-We show an example analysis using simulation data that resemble the BMI analysis for GECCO presented in the paper \cite{Dai2018}.
+We show an example analysis using simulation data that resemble the BMI analysis for GECCO presented in the paper \cite{Dai2017}.
 Briefly the dataset contains genotype data for 75 SNPs and 20,000 subjects, as well as demographic variables including age, gender
 and 3 principal components for the parent genome-wide association study.
 First we load the example dataset:
@@ -65,6 +79,7 @@ head(colnames(simdat),n=10)
 #coeff stores the 75 external regression cofficients.
 coeff=simdata$coeff
 head(coeff)
+
 @
 
 We define the columns in simdat that contain genotype data:
@@ -80,26 +95,17 @@ formula
 @
 
 Much of computation time is spent in calculating the correlation matrix of the surrogate direct effects as defined in the paper
-\cite{Dai2018}. When there are many SNPs to be evaluated as candidate instrumental variables, parallel computing can be deployed
+\cite{Dai2017}. When there are many SNPs to be evaluated as candidate instrumental variables, parallel computing can be deployed
 to speed up the glide function by setting the corenumber argument. If the requested number of cores is greater than number of
 cores available, GLIDE will user the latter number. GLIDE allows users to define a q-value cut-off that declares the significance
 of evaluating individual pleiotropy accounting for multiple testing. The default is qcutoff=0.2, to be conservative about validity
 of individual SNPs. Users can set the number of permutations for q-value computation. The default number is np=100,000. We then
 run the glide function with inputs as:
-
-<<out,eval=FALSE>>=
+<<out>>=
 out=glide(formula=formula,exposure_coeff=coeff,genotype_columns,data=simdat,
-          np=100000,qcutoff=0.2,parallel=FALSE,corenumber=1,verbose=TRUE)
+          np=100000,qcutoff=0.2,parallel=TRUE,corenumber=1,verbose=TRUE)
 head(out)
 @
-%@<<fig=TRUE,echo=FALSE, width='16in'>>=
-%@@
-%<<echo = FALSE, results=tex>>=
-%cat('\\begin{figure}[h]\n')
-%file = "./glideout.pdf"
-%cat('\\includegraphics{', file, '}\n', sep = '')
-%cat('\\end{figure}\n')
-%@
 
 \section{plot result}
 GLIDE provides two functions for plotting the results: the first shows the q-q plot of individual variant$^{\prime}$s p-value for
@@ -107,7 +113,7 @@ evaluating direct effects, the other shows the Egger regression plot with point 
 and the outcome. SNPs that were detected to have evidence of pleiotropy (for example, FDR<0.2) will be shown in both plots.
 
 We draw the q-q plot for the example dataset: plot.glide(out).
-We draw the Egger plot  for the example dataset: plot.egger(out).
+We draw the Egger plot  for the example dataset: plot.egger(out,exposure\_coeff=coeff).
 The figures are shown as follows:
 @<<fig=TRUE,echo=FALSE, width=10, height=5>>=
 @@

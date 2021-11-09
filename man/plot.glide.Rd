@@ -29,13 +29,13 @@ ylab is the default y label.
 the rest plot arguments.
 }
 }
-
+\value{No return value, q-q plot will be generated.}
 \author{
 James Y. Dai and X. Wang
 }
 
 \examples{
-\dontrun{
+\donttest{
 ##first generate output using the glide function
 #load an example data
 data(simdata)
