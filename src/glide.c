@@ -2,7 +2,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <R.h>
-# include <R_ext/Error.h>
 # include <R_ext/RS.h>
 # include <Rmath.h>
 # include <math.h>
