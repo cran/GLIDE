@@ -1,4 +1,12 @@
 //#define MATHLIB_STANDALONE 1
+#ifndef USE_FC_LEN_T
+#define USE_FC_LEN_T
+#endif
+#include <Rconfig.h>
+#include <R_ext/BLAS.h>
+#ifndef FCONE
+#define FCONE
+#endif
 # include <stdio.h>
 # include <stdlib.h>
 # include <R.h>
@@ -8,7 +16,6 @@
 # include <string.h>
 # include "glide.h"
 # include <R_ext/Lapack.h>
-# include <R_ext/BLAS.h>
 
 
 //void myrnorm(int n,double miu,double sigma, double *z)
@@ -642,7 +649,7 @@ void mydgemm (int M,int N,int K,double *A, double *B, double *C)
     int LDC = M;
     //double *C;
     //C=double_vec(M*N);
-    F77_CALL(dgemm)(&TRANSA, &TRANSB, &M, &N, &K, &ALPHA, A, &LDA, B, &LDB, &BETA, C, &LDC);
+    F77_CALL(dgemm)(&TRANSA, &TRANSB, &M, &N, &K, &ALPHA, A, &LDA, B, &LDB, &BETA, C, &LDC FCONE FCONE);
 }
 
 void dqrinv(double *xvec, int n, double tol, double *outvec){

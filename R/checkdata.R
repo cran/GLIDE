@@ -1,6 +1,6 @@
 checkdata <- function(formula,exposure_coeff,genotype_columns,data)
 {
-  if (class(exposure_coeff)=="data.frame")
+  if (inherits(exposure_coeff,"data.frame"))
   {
     tmp=exposure_coeff[,1]
     names(tmp)=rownames(exposure_coeff)
@@ -17,12 +17,12 @@ checkdata <- function(formula,exposure_coeff,genotype_columns,data)
     stop("A 'genotype_columns' argument is required")
     if (indx[4] == 0L)
   stop("A 'data' argument is required")
-  if (class(formula)=="character") 
+  if (inherits(formula,"character")) 
     formula=as.formula(formula)
   
   #check data related to formula
   outcome=as.character(formula)[2]
-  if (class(data[,outcome])=="factor")
+  if (inherits(data[,outcome],"factor"))
   {
     res=tryCatch(glm(formula,family="binomial",data=data),error = function(err){stop(paste0("When check the data related to formula,", err))})
   }else
@@ -31,7 +31,7 @@ checkdata <- function(formula,exposure_coeff,genotype_columns,data)
   }
   
   #check the exposure coefficients
-  if (is.null(names(exposure_coeff)) | class(exposure_coeff) != "numeric") 
+  if (is.null(names(exposure_coeff)) | !inherits(exposure_coeff, "numeric")) 
     stop("The exposure coefficients should be a named vector or dataframe.")
   for (i in 1:length(exposure_coeff))
   {

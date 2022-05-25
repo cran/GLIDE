@@ -1,6 +1,5 @@
 \name{checkdata}
 \alias{checkdata}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 A function used to check the core inputs of function glide
 }
@@ -12,25 +11,17 @@ checkdata(formula,exposure_coeff,genotype_columns,data)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{formula}{
-A an object of class "formula": outcome ~ adjusting covariates.
-}
+  \item{formula}{A an object of class "formula": outcome ~ adjusting covariates.}
   \item{exposure_coeff}{
 A named mumeric vector or a one-column dataframe for the external coefficients 
-for genotype-exposure associations.
-}
-  \item{genotype_columns}{
-An integer vector, column indices of data in which genotype data are stored.  
-}
-  \item{data}{
-A data frame composed of formula-related components and snp genotype columns.
-}
+for genotype-exposure associations.}
+  \item{genotype_columns}{An integer vector, column indices of data in which genotype data are stored.}
+  \item{data}{A data frame composed of formula-related components and snp genotype columns.}
 }
 \value{No return value, would generate error messages if input data are not right.}
 \author{
 James Y. Dai and X. Wang
 }
-
 \examples{
 #load an example data; it includes a dataframe "simdat" and a one-column dataframe  "coeff"
 data(simdata)

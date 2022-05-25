@@ -7,8 +7,8 @@ glide <- function(formula,exposure_coeff=NULL,genotype_columns=NULL,data,
     thetime=Sys.time()
     thetime=as.character(structure(thetime,class=c('POSIXt','POSIXct')))
   }
-  if (class(formula)=="character") formula=as.formula(formula)
-  if (class(exposure_coeff)=="data.frame")
+  if (inherits(formula,"character")) formula=as.formula(formula)
+  if (inherits(exposure_coeff,"data.frame"))
   {
     tmp=exposure_coeff[,1]
     names(tmp)=rownames(exposure_coeff)
